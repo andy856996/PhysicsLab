@@ -1,24 +1,23 @@
 clc;clear all;close all;
 %% Average casino row data input path
-CasinoRowDataPath = './casinoRowData/';
-%% caculate newer data using interp
+CasinoRowDataPath = './casinoRowData/';interp_x=[];interp_y=[];
 folderPath_list = dir(strcat(CasinoRowDataPath,'*.mat'));
-load([CasinoRowDataPath folderPath_list(1).name]);
-%newer_x_w_norm_tzo = x_w_norm_tzo(2):0.1:max(x_w_norm_tzo); 
-newer_x_w_norm_tzo = 1:0.1:300;
-[x_w_norm_tzo_C, ia, ~] = unique(x_w_norm_tzo);
-y_w_norm_tzo_interp1 = interp1(x_w_norm_tzo_C, y_w_norm_tzo(ia(:)), newer_x_w_norm_tzo, 'linear');  
-y_w_norm_tzo_interp2 = interp1(x_w_norm_tzo_C, y_w_norm_tzo(ia(:)), newer_x_w_norm_tzo, 'pchip');    
+for i=1:length(folderPath_list)
+    load([CasinoRowDataPath folderPath_list(i).name]);
+    interp_x = [interp_x;x_w_norm_tzo];
+    interp_y = [interp_y;y_w_norm_tzo];
+end
+[interp_x_uni, ia_uni, ~] = unique(interp_x);
+interp_y_uni = interp_y(ia_uni);
+%% caculate newer data using interp
+newer_x_w_norm_tzo = interp_x_uni(2):0.001:max(interp_x_uni);
+y_w_norm_tzo_interp1 = interp1(interp_x_uni, interp_y_uni, newer_x_w_norm_tzo, 'linear');  
+y_w_norm_tzo_interp2 = interp1(interp_x_uni, interp_y_uni, newer_x_w_norm_tzo, 'pchip');    
 %% plot the figure
-figure;loglog(x_w_norm_tzo,y_w_norm_tzo,'LineWidth',0.9);hold on;
+figure;loglog(interp_x_uni,interp_y_uni,'LineWidth',0.9);hold on;
 loglog(newer_x_w_norm_tzo,y_w_norm_tzo_interp1,'LineWidth',0.9);hold on;
 loglog(newer_x_w_norm_tzo,y_w_norm_tzo_interp2,'LineWidth',0.9);hold on;
 set(gca,'FontSize',17,'LineWidth',0.9);
-legend('Original', 'Nearest', 'Linear', 'Pchip', 'Spline');
+legend('Original','Linear', 'Pchip');
 
 
-figure;
-for i=1:length(folderPath_list)
-    load([CasinoRowDataPath folderPath_list(i).name]);
-    loglog(x_w_norm_tzo,y_w_norm_tzo,'LineWidth',0.9);hold on;
-end
