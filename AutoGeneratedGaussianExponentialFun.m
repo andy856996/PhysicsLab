@@ -1,9 +1,9 @@
 %% Automatically Generate Point Spread Function
 clc;clear all;
 %% inital data
-GauExpArr = 'GEE'; %Ex GEE or GGG
-ParameterArrayName = 'theta';
-ParameterName = 'x';
+GauExpArr = 'GGGGGGGEE'; %Ex GEE or GGG
+ParameterArrayName = 'x';
+ParameterName = 'X';
 %% CODE & output
 %-------------ETA---------------%
 ETAoutPutStr1 = '(1/(pi*(1';
