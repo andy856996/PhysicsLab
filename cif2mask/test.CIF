@@ -1,0 +1,16 @@
+DS 1 1 10;
+9 noname;
+4N GeneratedwiththeLayoutEditor(ThismessagewillNOTaddedinanycommercialversionoftheLayoutEditor.)
+ 100 3675;
+4N GeneratedwiththeLayoutEditor(ThismessagewillNOTaddedinanycommercialversionoftheLayoutEditor.)
+ 100 3675;
+L layer 1;
+B 200 1700 600,1375;
+L layer 1;
+B 200 900 200,775;
+L layer 1;
+B 200 2000 200,2525;
+L layer 1;
+B 200 1000 600,3175;
+DF;
+E
