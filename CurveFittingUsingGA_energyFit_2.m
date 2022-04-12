@@ -45,7 +45,7 @@ LOGNSSE_MF_lognsse=sum(((log(y_w_norm_tzo)-log(estimated_y1(:,:)))./log(y_w_norm
 %% using GA
 
 [x, fval] = ga(@fun_Casino_in_GA, 5, [], [], [], [], ...
-    [0,0,0,0,0], [5000,5000,5000,5000,5000], [], [], GAoptions);
+    [0,0,0,0,0], [2,100,1000,5,5], [], [], GAoptions);
 x_ga = x;
 x_fval = fval;
 eval(['estimated_y2(:,:) = ' formula]);
@@ -81,7 +81,8 @@ global formula
 X = data(:,1);
 y = data(:,2);
 eval(['model_y =' formula]);
-E = sum((log(y)-log(model_y))./log(y).^2);
+%E = sum((log(y)-log(model_y))./log(y).^2);
+E = sum((log(abs(y))-log(abs(model_y))).^2);
 end
 %% lognsse2
 function E = fun_Casino_in_Fminsearch_3(x, data)
@@ -89,7 +90,8 @@ global formula
 X = data(:,1);
 y = data(:,2);
 eval(['model_y =' formula]);
-E = sum(log(y)-log(model_y));
+%E = sum(log(y)-log(model_y));
+E = sum(abs(log(y))-log(abs(model_y)));
 end
 %% lognsse2 GA
 function E = fun_Casino_in_GA(x)
@@ -97,5 +99,6 @@ global formula data
 X = data(:,1);
 y = data(:,2);
 eval(['model_y =' formula]);
-E = sum(log(y)-log(model_y));
+%E = sum(log(y)-log(model_y));
+E = sum(abs(log(y))-log(abs(model_y)));
 end
