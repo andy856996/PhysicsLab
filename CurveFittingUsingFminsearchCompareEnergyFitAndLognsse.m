@@ -16,14 +16,14 @@ eta_plus_exp=1;
 init_theta=[alpha_exp beta_exp gamma_exp eta_exp eta_plus_exp];
 %% Fitting process 
 options=optimset('largescale','on','display','iter','tolx',1e-20,'tolfun',1e-20,'MaxFunEvals',20000,'MaxIter',10^10);
-[x,fval,exitflag,output]=fminsearch(@fun_Casino_in_Fminsearch,init_theta,options,data);
+[x,fval,~,~]=fminsearch(@fun_Casino_in_Fminsearch,init_theta,options,data);
 x_energy = x;
 fval_energy = fval;
 eval(['estimated_y(:,:) = ' formula]);
 fs=20;
 figure;loglog(x_w_norm_tzo,y_w_norm_tzo, 'k-', x_w_norm_tzo, estimated_y(:,:));hold on;%semilogy
 
-[x,fval,exitflag,output]=fminsearch(@fun_Casino_in_Fminsearch_2,init_theta,options,data);
+[x,fval,~,~]=fminsearch(@fun_Casino_in_Fminsearch_2,init_theta,options,data);
 x_log = x;
 fval_log = fval;
 eval(['estimated_y(:,:) = ' formula]);
