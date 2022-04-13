@@ -1,5 +1,5 @@
 clc;clear all;
-load('.\sever2\3_error');
+load('.\sever2\2_error');
 shift_array = [];
 Eer_array = [];
 Ier_array = [];
@@ -16,33 +16,33 @@ for i=1:p
                 Total_shift(i,1).info(j,1).value(k,1)=shift(i,ii).info(j,1).value(k,1) + Total_shift(i,1).info(j,1).value(k,1);
             end
             shift_array = [shift_array Total_shift(i,1).info(j,1).value(k,1)];
-            Eer_array = [Eer_array Eer(i,1).info(j,1).value(k,1)];
-            Ier_array = [Ier_array Ier(i,1).info(j,1).value(k,1)];
+            Eer_array   = [Eer_array Eer(i,1).info(j,1).value(k,1)];
+            Ier_array   = [Ier_array Ier(i,1).info(j,1).value(k,1)];
         end
     end
 end
-[EerUniqueArr,ia,ic]  = unique(Eer_array);
-figure;plot(EerUniqueArr,Ier_array(ia))
-xlabel('EPE')
-ylabel('IE')
-title('EPE vs. IE')
-set(gca,'fontsize',20)
-
-
-[EerUniqueArr,ia,ic]  = unique(Eer_array);
-figure;plot(EerUniqueArr,shift_array(ia))
-xlabel('EPE')
-ylabel('shift')
-title('EPE vs. shift')
-set(gca,'fontsize',20)
-
-
-[IerUniqueArr,ia,ic]  = unique(Ier_array);
-figure;plot(IerUniqueArr,shift_array(ia))
-xlabel('IE')
-ylabel('shift')
-title('IE vs. shift')
-set(gca,'fontsize',20)
+% [EerUniqueArr,ia,ic]  = unique(Eer_array);
+% figure;plot(EerUniqueArr,Ier_array(ia))
+% xlabel('EPE')
+% ylabel('IE')
+% title('EPE vs. IE')
+% set(gca,'fontsize',20)
+% 
+% 
+% [EerUniqueArr,ia,ic]  = unique(Eer_array);
+% figure;plot(EerUniqueArr,shift_array(ia))
+% xlabel('EPE')
+% ylabel('shift')
+% title('EPE vs. shift')
+% set(gca,'fontsize',20)
+% 
+% 
+% [IerUniqueArr,ia,ic]  = unique(Ier_array);
+% figure;plot(IerUniqueArr,shift_array(ia))
+% xlabel('IE')
+% ylabel('shift')
+% title('IE vs. shift')
+% set(gca,'fontsize',20)
 
 
 
