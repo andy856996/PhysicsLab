@@ -1,24 +1,87 @@
 %% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%Chapter 5 and 6%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% GPSM_wa (Generalized PSM optimization with discretization penalty and wavelet penalty in coherent imaging system.)
+%% GPSM wa(N,pz,ra,phase_n,s phi,s_theta,a,t_r,t_m,gamma_r_D,gamma_a_D,gamma_r_WA,gamma_a_WA,scale,epsilon,maxloop).
+% N: Dimension of the mask.
+% pz: Desired output pattern.
+% ra: Initial phase pattern of the mask.
+% phase n: Number of discrete phase levels of the optimized mask.
+% In the algorithm, phase n canbe2or4.
+% s phi: Step size of the mask amplitude optimization.
+% s theta: Step size of the mask phase optimization.
+% a: Steepness of the sigmoid function.
+% t_r: Process threshold of the sigmoid function.
+% t_m: Global threshold of the mask.
+% gamma_r_D: Weight of the discretization penalty corresponding to mask amplitude.
+% gamma_a_D: Weight of the discretization penalty corresponding to mask phase.
+% gamma_r_WA: Weight of the wavelet penalty corresponding to mask amplitude.
+% gamma_a_WA: Weight of the wavelet penalty corresponding to mask phase.
+% scale: Regional weights of the localized wavelet penalty. epsilon: Tolerable output pattern error.
+% maxloop: Maximum iteration number.
 GPSM_wa(80,pz_f,ra_f,2,2,0.01,80,0.5,0.5,0,0,0,0,scale1,28,120);% The result is shown in Fig. 5.16.
 GPSM_wa(80,pz_f,ra_f,2,2,0.01,80,0.5,0.5,0.001,0.0001,0,0,scale1, 32,100);% The result is shown in Fig. 6.10.
 GPSM_wa(80,pz_u,ra_u,4,2,0.01,80,0.5,0.5,0.01,0.001,0.2,0.001, scale1,44,200);% The result is shown in Fig. 6.15.
 GPSM_wa(80,pz_f,ra_f,2,2,0.01,80,0.5,0.5,0.001,0.0001,0.03,0.001, scale1,36,230);% The result is shown in Fig. 6.16.
 GPSM_wa(80,pz_u,ra_u,4,2,0.01,80,0.5,0.5,0.01,0.001,0.2,0.001, scale2,38,200);% The result is shown in Fig. 6.17.
 %The algorithms are described in Sections 5.4.1, 6.1.3, 6.2.2, and 6.2.3.
+
+
 %% GPSM_tv(Generalized PSM optimization with discretization penalty and total variation penalty in coherent imaging system.)
+%% GPSM tv(N,pz,ra,phase_n,s_phi,s_theta,a,t_r,t_m,gamma_r_D,gamma_a_D,gamma_r_TV,gamma_a_TV,epsilon,maxloop).
+% N: Dimension of the mask.
+% pz: Desired output pattern.
+% ra: Initial phase pattern of the mask.
+% phase_n: Number of discrete phase levels of the optimized mask. Inthe algorithm, phase_n can be 2 or 4.
+% s_phi: Step size of the mask amplitude optimization.
+% s_theta: Step size of the mask phase optimization.
+% a: Steepness of the sigmoid function.
+% t_r: Process threshold of the sigmoid function.
+% t_m: Global threshold of the mask.
+% gamma_r_D: Weight of the discretization penalty corresponding to mask amplitude.
+% gamma_a_D: Weight of the discretization penalty corresponding to mask phase.
+% gamma_r_TV: Weight of the total variation penalty corresponding to mask amplitude.
+% gamma_a_TV: Weight of the total variation penalty corresponding to mask phase.
+% epsilon: Tolerable output pattern error.
+% maxloop: Maximum iteration number.
 GPSM_tv(80,pz_u,ra_u,4,2,0.01,80,0.5,0.5,0,0,0,0,18,25); %The result is shown in Fig. 5.13.
 GPSM_tv(80,pz_u,ra_u,4,2,0.01,80,0.5,0.5,0.045,0.001,0,0,29,18);% The result is shown in Fig. 6.9.
 GPSM_tv(80,pz_u,ra_u,4,2,0.01,80,0.5,0.5,0.01,0.001,0.1,0.001, 44,27);% The result is shown in Fig. 6.13.
 %The algorithms are described in Sections 5.4.1, 6.1.3, and 6.2.1.
+
+
 %% OPC_tv(OPC optimization with discretization penalty and total variation penalty in coherent imaging system.)
+%% OPC_tv(N,N ﬁlter,k,pz,s,a,t_r,t_m,gamma_D,gamma_TV,epsilon,maxloop).
+% N: Dimension of the mask.
+% N ﬁlter: Dimension of the amplitude impulse response.  幅度脈衝響應的維度
+% k: Process constant. 過程常數
+% pz: Desired output pattern.
+% s: Step size.
+% a: Steepness of the sigmoid function. sigmoid 函數的陡峭度
+% t_r: Process threshold of the sigmoid function. sigmoid函數的進程閾值
+% t_m: Global threshold of the mask. 
+% gamma_D: Weight of the discretization penalty.  離散化懲罰的權重
+% gamma_TV: Weight of the total variation penalty. 總變異懲罰的權重
+% epsilon: Tolerable output pattern error. 可容忍的輸出模式錯誤
+% maxloop: Maximum iteration number.
 OPC_tv(50,15,5,pz_t,0.2,90,0.5,0.5,0,0,4,350);% The result is shown in Fig. 5.3.
 OPC_tv(80,11,14,pz_f,0.5,80,0.5,0.5,0,0,4,90); %The result is shown in Fig. 5.5.
 OPC_tv(50,15,5,pz_t,0.2,90,0.5,0.5,0.025,0,4,350);% The result is shown in Fig. 6.2.
 OPC_tv(80,11,14,pz_f,0.5,80,0.5,0.5,0.01,0,0,70);% The result is shown in Fig. 6.3.
 OPC_tv(80,11,14,pz_f,0.5,80,0.5,0.5,0.01,0.025,6,70); %The result is shown in Fig. 6.11.
 %The algorithms are described in Sections 5.2.1, 6.1.1, and 6.2.1.
+
+
 %% PSM_tv(Two-phase PSM optimization with discretization penalty and total variation penalty in coherent imaging system.)
+%% PSM tv(N,N ﬁlter,k,pz,r,s,a,t_r,t_m,gamma_D,gamma_TV,epsilon,maxloop).
+% N: Dimension of the mask.
+% N ﬁlter: Dimension of the amplitude impulse response. k: Process constant.
+% pz: Desired output pattern.
+% r: Initial phase pattern of the mask.
+% s: Step size.
+% a: Steepness of the sigmoid function.
+% t_r: Process threshold of the sigmoid function.
+% t_m: Global threshold of the mask.
+% gamma_D: Weight of the discretization penalty. gamma TV: Weight of the total variation penalty. epsilon: Tolerable output pattern error.
+% maxloop: Maximum iteration number.
 PSM_tv(50,15,5,pz_t,r_t,1,90,0.5,0.5,0,0,10,160); %The result is shown in Fig. 5.7.
 PSM_tv(80,11,14,pz_f,r_f,0.5,80,0.5,0.5,0,0,10,230);% The result is shown in Fig. 5.9.
 PSM_tv(50,15,5,pz_t,r_t,1,90,0.5,0.5,0.0175,0,12,150); %The result is shown in Fig. 6.5.
