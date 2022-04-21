@@ -44,4 +44,4 @@ for i=1:length(GauExpArr)
     end
 end
 ABFinalOutPut = [ABFinalOutPut ');'];
-ABFinalOutPut
+disp(ABFinalOutPut);
