@@ -26,32 +26,35 @@ options=optimset('largescale','on','display','iter','tolx',1e-20,'tolfun',1e-20,
      'Display', 'iter');                          % 結果展示方式
  
 %options=gaoptimset('Display','iter','TolFun',1e-20,'TolCon',1e-20);
-%% Fitting process 
-[x,fval,exitflag,output]=fminsearch(@fun_Casino_in_Fminsearch,init_theta,options,data);
-x_energy = x;
-fval_energy = fval;
-eval(['estimated_y(:,:) = ' formula]);
-LOGNSSE_MF_energy=sum(((log(y_w_norm_tzo)-log(estimated_y(:,:)))./log(y_w_norm_tzo)).^2)
-fs=20;
+%% energy fit
+[x_energy_fmin,fval_energy_fmin,~,~]=fminsearch(@fun_Casino_in_Fminsearch_Energyfit,init_theta,options,data);
+x = x_energy_fmin;
+eval(['estimated_y_energy_fmin(:,:) = ' formula]);
 
-%semilogy(x_w_norm_tzo,y_w_norm_tzo, 'k-', x_w_norm_tzo, estimated_y(:,:));hold on;%semilogy
-%%
-[x,fval,exitflag,output]=fminsearch(@fun_Casino_in_Fminsearch_2,init_theta,options,data);
-x_log = x;
-fval_log = fval;
-eval(['estimated_y1(:,:) = ' formula]);
-LOGNSSE_MF_lognsse=sum(((log(y_w_norm_tzo)-log(estimated_y1(:,:)))./log(y_w_norm_tzo)).^2)
-%semilogy(x_w_norm_tzo, estimated_y(:,:));
-%% using GA
-
-[x, fval] = ga(@fun_Casino_in_GA, 5, [], [], [], [], ...
+[x_energy_ga, x_energy_fval_GA] = ga(@fun_Casino_in_GA_energyfit, 5, [], [], [], [], ...
     [0,0,0,0,0], [1000,1000,1000,5,5], [], [], GAoptions);
-x_ga = x;
-x_fval = fval;
-eval(['estimated_y2(:,:) = ' formula]);
-LOGNSSE_MF_lognsse2=sum(((log(y_w_norm_tzo)-log(estimated_y2(:,:)))./log(y_w_norm_tzo)).^2)
-%% plot
+x = x_energy_ga;
+eval(['estimated_y__energy_GA(:,:) = ' formula]);
+%% Lognsse
+[x_lognsse_fmin,fval_lognsse_fmin,exitflag,output]=fminsearch(@fun_Casino_in_Fminsearch_Energyfit,init_theta,options,data);
+x = x_lognsse_fmin;
+eval(['estimated_y_lognsse_fmin(:,:) = ' formula]);
 
+[x_lognsse_GA, x_lognsse_fval_GA] = ga(@fun_Casino_in_GA_energyfit, 5, [], [], [], [], ...
+    [0,0,0,0,0], [1000,1000,1000,5,5], [], [], GAoptions);
+x = x_lognsse_GA;
+eval(['estimated_y_lognsse_GA(:,:) = ' formula]);
+%% Log
+[x_log_fmin,fval_log_fmin,~,~]=fminsearch(@fun_Casino_in_Fminsearch_Energyfit,init_theta,options,data);
+x = x_log_fmin;
+eval(['estimated_y_log_fmin(:,:) = ' formula]);
+
+[x_log_ga, x_log_fval_GA] = ga(@fun_Casino_in_GA_energyfit, 5, [], [], [], [], ...
+    [0,0,0,0,0], [1000,1000,1000,5,5], [], [], GAoptions);
+x = x_log_ga;
+eval(['estimated_y_log_GA(:,:) = ' formula]);
+%% plot
+fs=20;
 
 figure;loglog(x_w_norm_tzo,y_w_norm_tzo, 'k-', x_w_norm_tzo, estimated_y(:,:));hold on;
 loglog(x_w_norm_tzo, estimated_y1(:,:));hold on;
@@ -64,8 +67,15 @@ set(gca,'FontName','Times New Roman','FontSize',fs)
 xlabel('Radius (nm)','fontsize',fs,'FontName','Times New Roman');
 ylabel('Norm. absorbed energy distribution (1/nm  ^2/e)','fontsize',fs,'FontName','Times New Roman');
 clear sum
-%% energy
-function E = fun_Casino_in_Fminsearch(x, data)
+
+
+
+
+
+
+
+%% Fmin energy
+function E = fun_Casino_in_Fminsearch_Energyfit(x, data)
 global formula
 X = data(:,1);
 y = data(:,2);
@@ -75,16 +85,16 @@ for i=1:size(data,1)-1
 end
 E =sum(abs( (y(1:size(data,1)-1)-model_y(1:size(data,1)-1)).*X(1:size(data,1)-1).*delta_x'));
 end
-%% lognsse
-function E = fun_Casino_in_Fminsearch_2(x, data)
+%% Fmin lognsse
+function E = fun_Casino_in_Fminsearch_Lognsse(x, data)
 global formula
 X = data(:,1);
 y = data(:,2);
 eval(['model_y =' formula]);
 E = sum(abs(log(y)-log(model_y))./log(y).^2);
 end
-%% lognsse2
-function E = fun_Casino_in_Fminsearch_3(x, data)
+%% Fmin log
+function E = fun_Casino_in_Fminsearch_Log(x, data)
 global formula
 X = data(:,1);
 y = data(:,2);
@@ -92,9 +102,26 @@ eval(['model_y =' formula]);
 %E = sum(log(y)-log(model_y));
 E = sum(abs(log(y)-log(model_y)));
 end
-%% lognsse2 GA
-function E = fun_Casino_in_GA(x)
+%% GA energy
+function E = fun_Casino_in_GA_energyfit(x)
 global formula data
+X = data(:,1);
+y = data(:,2);
+eval(['model_y =' formula]);
+%E = sum(log(y)-log(model_y));
+E = sum(abs(log(y)-log(model_y)));
+end
+%% GA lognsse
+function E = fun_Casino_in_GA_Lognsse(x)
+global formula
+X = data(:,1);
+y = data(:,2);
+eval(['model_y =' formula]);
+E = sum(abs(log(y)-log(model_y))./log(y).^2);
+end
+%% GA log
+function E = fun_Casino_in_GA_Log(x)
+global formula
 X = data(:,1);
 y = data(:,2);
 eval(['model_y =' formula]);
