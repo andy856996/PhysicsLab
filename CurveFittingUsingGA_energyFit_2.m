@@ -2,15 +2,15 @@ clear;clc;%close all;
 global formula data
 load('C:\physicsTopics\DAT3\EUV_mask_Cr_100w_Dv500_500_200_PSF');
 data=[x_w_norm_tzo,y_w_norm_tzo];
-X=x_w_norm_tzo;
+X = x_w_norm_tzo;
 y = y_w_norm_tzo;
 
 formula = '(1/(pi*(1+x(4)+x(5))))*((1/(x(1)^2))*exp(-(X/x(1)).^2)+(x(4)/(x(2)^2))*exp(-(X/x(2)))+(x(5)/(x(3)^2))*exp(-(X/x(3))));';
 clear sum
 %% Initial data
-alpha_exp=1;% nm
+alpha_exp=1;
 beta_exp=54;
-gamma_exp=5;% nm
+gamma_exp=5;
 eta_exp=0.553790025503776;
 eta_plus_exp=0.315262132295100;
 init_theta=[alpha_exp beta_exp gamma_exp eta_exp eta_plus_exp];
