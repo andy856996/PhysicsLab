@@ -53,26 +53,55 @@ eval(['estimated_y_log_fmin(:,:) = ' formula]);
     [0,0,0,0,0], [1000,1000,1000,5,5], [], [], GAoptions);
 x = x_log_ga;
 eval(['estimated_y_log_GA(:,:) = ' formula]);
-%% plot
+
+%% plot figure
 fs=20;
-
-figure;loglog(x_w_norm_tzo,y_w_norm_tzo, 'k-', x_w_norm_tzo, estimated_y(:,:));hold on;
-loglog(x_w_norm_tzo, estimated_y1(:,:));hold on;
-loglog(x_w_norm_tzo, estimated_y2(:,:));
-
-title('GEE');
-xlim([1 500]);
-legend('MC data','using energy','using lognsse','using lognsse2');
+% energy
+figure;loglog(x_w_norm_tzo,y_w_norm_tzo, 'k-', x_w_norm_tzo, estimated_y_energy_fmin(:,:));hold on;
+loglog(x_w_norm_tzo, estimated_y__energy_GA(:,:));
+xlim([1 500]);title('energy');
+legend('MC data','fminsearch energy','GA energy');
 set(gca,'FontName','Times New Roman','FontSize',fs)
 xlabel('Radius (nm)','fontsize',fs,'FontName','Times New Roman');
 ylabel('Norm. absorbed energy distribution (1/nm  ^2/e)','fontsize',fs,'FontName','Times New Roman');
-clear sum
+% lognsse
+figure;loglog(x_w_norm_tzo,y_w_norm_tzo, 'k-', x_w_norm_tzo, estimated_y_lognsse_fmin(:,:));hold on;
+loglog(x_w_norm_tzo, estimated_y_lognsse_GA(:,:));
+xlim([1 500]);title('Lognsse');
+legend('MC data','fminsearch lognsse','GA lognsse');
+set(gca,'FontName','Times New Roman','FontSize',fs)
+xlabel('Radius (nm)','fontsize',fs,'FontName','Times New Roman');
+ylabel('Norm. absorbed energy distribution (1/nm  ^2/e)','fontsize',fs,'FontName','Times New Roman');
+% log
+figure;loglog(x_w_norm_tzo,y_w_norm_tzo, 'k-', x_w_norm_tzo, estimated_y_log_fmin(:,:));hold on;
+loglog(x_w_norm_tzo, estimated_y_log_GA(:,:));
+xlim([1 500]);title('Log');
+legend('MC data','fminsearch log','GA log');
+set(gca,'FontName','Times New Roman','FontSize',fs)
+xlabel('Radius (nm)','fontsize',fs,'FontName','Times New Roman');
+ylabel('Norm. absorbed energy distribution (1/nm  ^2/e)','fontsize',fs,'FontName','Times New Roman');
 
 
 
 
+% 
+figure;loglog(x_w_norm_tzo,y_w_norm_tzo, 'k-', x_w_norm_tzo, estimated_y_energy_fmin(:,:));hold on;
+loglog(x_w_norm_tzo, estimated_y_lognsse_fmin(:,:));hold on;
+loglog(x_w_norm_tzo, estimated_y_log_fmin(:,:));
+xlim([1 500]);title('using fimsearch');
+legend('MC data','energy','lognsse','log');
+set(gca,'FontName','Times New Roman','FontSize',fs)
+xlabel('Radius (nm)','fontsize',fs,'FontName','Times New Roman');
+ylabel('Norm. absorbed energy distribution (1/nm  ^2/e)','fontsize',fs,'FontName','Times New Roman');
 
-
+figure;loglog(x_w_norm_tzo,y_w_norm_tzo, 'k-', x_w_norm_tzo, estimated_y__energy_GA(:,:));hold on;
+loglog(x_w_norm_tzo, estimated_y_lognsse_GA(:,:));hold on;
+loglog(x_w_norm_tzo, estimated_y_log_GA(:,:));
+xlim([1 500]);title('using GA');
+legend('MC data','energy','lognsse','log');
+set(gca,'FontName','Times New Roman','FontSize',fs)
+xlabel('Radius (nm)','fontsize',fs,'FontName','Times New Roman');
+ylabel('Norm. absorbed energy distribution (1/nm  ^2/e)','fontsize',fs,'FontName','Times New Roman');
 
 %% Fmin energy
 function E = fun_Casino_in_Fminsearch_Energyfit(x, data)
