@@ -26,9 +26,9 @@ midway_coherence=(N_coherence+1)/2;   %Middle point of annular illumination
 % t_m=0.5;   %Global threshold of the mask
 % gamma_D=0.025;   %Weight of the discretization penalty
 % gamma_WA=0.025;   %Weight of the wavelet penalty
-d=zeros(N,N);   %Gradient of the cost function
-d_D=zeros(N,N);   %Gradient of the discretization penalty
-d_WA=zeros(N,N);   %Gradient of the wavelet penalty
+d=zeros(N,N);   %Gradient of the cost function 誤差的梯度
+d_D=zeros(N,N);   %Gradient of the discretization penalty 離散化懲罰的梯度
+d_WA=zeros(N,N);   %Gradient of the wavelet penalty 小波懲罰的梯度
 % epsilon=0;   %Tolerable output pattern error
 % maxloop=43;   %Maximum iteration number
 convergence=zeros(maxloop,1);   %Output pattern error in each iteration
@@ -36,11 +36,11 @@ count=0;   %Index of iteration number
 sum6=10000;   %Output pattern error corresponding to the optimized binary mask
 sum8=10000;   %Output pattern error corresponding to the optimized real-valued mask
 
-
+%%%%%%部分相干成像系統的幅度脈衝響應 【類似PSF??】
 %%%%%%the amplitude impulse response of the partially coherent imaging system%%%%%%
 h=zeros(N_filter,N_filter);
 radius=0;
-midway=(N_filter+1)/2;%middle point of low pass filter
+midway=(N_filter+1)/2;%middle point of low pass filter 低通濾波器的中點
 for row=1:N_filter
     for column=1:N_filter
         radius=pixel*sqrt( (row-midway)^2 + (column-midway)^2 );
@@ -216,9 +216,9 @@ imshow(pz);
 %%%%%%The initialization of \theta, where r=\theta%%%%%%
 r=pi*4/5*(pz==0) + pi/5*(pz==1);
  
-%%%%%%%Annular illumination pattern%%%%%%%
-radius_1=D/(2*D_C_1);   %Inner radius of annular illumination
-radius_2=D/(2*D_C_2);   %Outer radius of annular illumination 
+%%%%%%%Annular illumination pattern%%%%%%% 圓形孔徑
+radius_1=D/(2*D_C_1);   %Inner radius of annular illumination 內圓半徑
+radius_2=D/(2*D_C_2);   %Outer radius of annular illumination 外圓半徑
 yita=zeros(N_coherence,N_coherence);   %Annular illumination pattern
 for row=1:N_coherence
     for column=1:N_coherence
@@ -236,7 +236,7 @@ imshow(yita>0);
 m=zeros(N,N);   %Mask pattern
 while (sum6>epsilon) & (count<maxloop)   
    count=count+1; 
-   r=r-step*d;   %Update
+   r=r-step*d;   %Update (r - step * Gradient of the cost function)
    %%%%%%Calculate pattern error%%%%%%
    m=(1+cos(r))/2;   %Grey mask
    m_binary=m>t_m;   %Binary mask

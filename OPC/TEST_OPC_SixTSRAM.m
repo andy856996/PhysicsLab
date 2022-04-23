@@ -22,6 +22,9 @@ load('.\matrix\distribution2.mat')
 load('.\matrix\pz_3D1.mat')
 load('.\matrix\pz_3D2.mat')
 load('.\matrix\mask_pattern.mat')
+OPC_fse(166,mask_pattern,21,2,0.29,1.25,13.5,1,0.8, 0.975,2,25,0.19,0.5,0.025,0.025,50,43); %The result is shown in the ﬁrst row in Fig. 7.3.
+OPC_fse(166,mask_pattern,21,5.625,0.29,1.25,193,1,0.8, 0.975,2,25,0.19,0.5,0.025,0.025,1426,43); %The result is shown in the ﬁrst row in Fig. 7.3.
+
 %% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%Chapter 5 and 6%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% GPSM_wa (Generalized PSM optimization with discretization penalty and wavelet penalty in coherent imaging system.)
 %% GPSM wa(N,pz,ra,phase_n,s phi,s_theta,a,t_r,t_m,gamma_r_D,gamma_a_D,gamma_r_WA,gamma_a_WA,scale,epsilon,maxloop).
@@ -139,6 +142,9 @@ OPC_acaa(166,mask_pattern,21,5.625,0.29,1.25,193,1,0.3, 0.4,0.5,25,0.19,0.17,0.5
 % epsilon: Tolerable output pattern error.
 % maxloop: Maximum iteration number.
 OPC_fse(166,mask_pattern,21,5.625,0.29,1.25,193,1,0.8, 0.975,2,25,0.19,0.5,0.025,0.025,1426,43); %The result is shown in the ﬁrst row in Fig. 7.3.
+
+
+
 OPC_fse(166,mask_pattern,21,5.625,0.29,1.25,193,1,0.5,0.6, 2,25,0.19,0.5,0.025,0.025,1582,60);% The result is shown in the second row in Fig. 7.3.
 OPC_fse(166,mask_pattern,21,5.625,0.29,1.25,193,1,0.3,0.4, 2,25,0.19,0.5,0.025,0.025,1512,120);% The result is shown in the third row in Fig. 7.3.
 %The algorithms are described in Section 7.1.1.
