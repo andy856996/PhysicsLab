@@ -40,27 +40,6 @@ save_error = [fval_energy_fmin;fval_lognsse_fmin;fval_log_fmin]
 
 %% plot figure
 fs=20;
-% % energy
-% fig1 = figure;loglog(x_w_norm_tzo,y_w_norm_tzo, 'k-', x_w_norm_tzo, estimated_y_energy_fmin(:,:));hold on;
-% xlim([1 500]);title('energy');
-% legend('MC data','fminsearch energy');
-% set(gca,'FontName','Times New Roman','FontSize',fs)
-% xlabel('Radius (nm)','fontsize',fs,'FontName','Times New Roman');
-% ylabel('Norm. absorbed energy distribution (1/nm  ^2/e)','fontsize',fs,'FontName','Times New Roman');
-% % lognsse
-% fig2 = figure;loglog(x_w_norm_tzo,y_w_norm_tzo, 'k-', x_w_norm_tzo, estimated_y_lognsse_fmin(:,:));hold on;
-% xlim([1 500]);title('Lognsse');
-% legend('MC data','fminsearch lognsse');
-% set(gca,'FontName','Times New Roman','FontSize',fs)
-% xlabel('Radius (nm)','fontsize',fs,'FontName','Times New Roman');
-% ylabel('Norm. absorbed energy distribution (1/nm  ^2/e)','fontsize',fs,'FontName','Times New Roman');
-% % log
-% fig3 = figure;loglog(x_w_norm_tzo,y_w_norm_tzo, 'k-', x_w_norm_tzo, estimated_y_log_fmin(:,:));hold on;
-% xlim([1 500]);title('Log');
-% legend('MC data','fminsearch log');
-% set(gca,'FontName','Times New Roman','FontSize',fs)
-% xlabel('Radius (nm)','fontsize',fs,'FontName','Times New Roman');
-% ylabel('Norm. absorbed energy distribution (1/nm  ^2/e)','fontsize',fs,'FontName','Times New Roman');
 
 % 
 fig4 = figure;loglog(x_w_norm_tzo,y_w_norm_tzo, 'k-', x_w_norm_tzo, estimated_y_energy_fmin(:,:));hold on;
