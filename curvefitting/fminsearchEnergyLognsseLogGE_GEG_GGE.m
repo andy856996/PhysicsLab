@@ -5,10 +5,10 @@ global formula data
 
 %% -------------------改這裡拉----------------------%%%%%%%%%%%%%%
 load('C:\Users\andy8\Desktop\HYY_DAT2\EUV_mask_Te_100w_Dv500_500_200_PSF.mat'); %檔案路徑
-formula = '(1/(pi*(1+x(3))))*((1/(x(1)^2))*exp(-(X/x(1)).^2)+(x(3)/(x(2)^2))*exp(-(X/x(2)).^2));';%公式
+formula = '(1/(pi*(1+x(4)+x(5))))*((1/(x(1)^2))*exp(-(X/x(1)).^2)+(x(4)/(x(2)^2))*exp(-(X/x(2)))+(x(5)/(x(3)^2))*exp(-(X/x(3))));';%公式
 
 title_name = 'Te';% 要改材料名稱
-title_formula = 'GG';% 要改
+title_formula = 'GEE';% 要改
 yourName = 'Ding'; % 你的名子
 
 init_theta_energy=[6.3525 50 200 1 1.9265];
