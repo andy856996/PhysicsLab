@@ -3,11 +3,11 @@ global formula data
 load('C:\Users\andy8\Desktop\HYY_DAT2\EUV_mask_Te_100w_Dv500_500_200_PSF.mat');
 %formula = '(1/(pi*(1+x(3))))*((1/(x(1)^2))*exp(-(X/x(1)).^2)+(x(3)/(x(2)^2))*exp(-(X/x(2))));';
 %formula = '(1/(pi*(1+x(4)+x(5))))*((1/(x(1)^2))*exp(-(X/x(1)).^2)+(x(4)/(x(2)^2))*exp(-(X/x(2)))+(x(5)/(x(3)^2))*exp(-(X/x(3)).^2));';
-formula = '(1/(pi*(1+x(4)+x(5))))*((1/(x(1)^2))*exp(-(X/x(1)).^2)+(x(4)/(x(2)^2))*exp(-(X/x(2)).^2)+(x(5)/(x(3)^2))*exp(-(X/x(3))));';
+formula = '(1/(pi*(1+x(3))))*((1/(x(1)^2))*exp(-(X/x(1)).^2)+(x(3)/(x(2)^2))*exp(-(X/x(2)).^2));';
 
-title_name = 'Cr';
-title_formula = 'GE';
-
+title_name = 'Te';
+title_formula = 'GG';
+yourName = 'Ding';
 data=[x_w_norm_tzo,y_w_norm_tzo];
 X = x_w_norm_tzo;
 y = y_w_norm_tzo;
@@ -77,10 +77,10 @@ set(gca,'FontName','Times New Roman','FontSize',fs)
 xlabel('Radius (nm)','fontsize',fs,'FontName','Times New Roman');
 ylabel('Norm. absorbed energy distribution (1/nm  ^2/e)','fontsize',fs,'FontName','Times New Roman');
 
-saveas(fig1,['C:\Users\andy8\Desktop\saveFig\GGE\' title_name '_fminsearch_' title_formula '_energyfit'])
-saveas(fig2,['C:\Users\andy8\Desktop\saveFig\GGE\' title_name '_fminsearch_' title_formula '_lognsse'])
-saveas(fig3,['C:\Users\andy8\Desktop\saveFig\GGE\' title_name '_fminsearch_' title_formula '_log'])
-saveas(fig4,['C:\Users\andy8\Desktop\saveFig\GGE\' title_name '_fminsearch_' title_formula '_ALL'])
+% saveas(fig1,['C:\Users\andy8\Desktop\saveFig\GGE\' title_formula '_' title_name '_fminsearch_'  '_energyfit'])
+% saveas(fig2,['C:\Users\andy8\Desktop\saveFig\GGE\' title_name '_fminsearch_' title_formula '_lognsse'])
+% saveas(fig3,['C:\Users\andy8\Desktop\saveFig\GGE\' title_name '_fminsearch_' title_formula '_log'])
+saveas(fig4,['C:\Users\andy8\Desktop\PhysicsLab\curvefitting\' title_formula '_' title_name '_' yourName ])
 
 %% Fmin energy
 function E = fun_Casino_in_Fminsearch_Energyfit(x)
