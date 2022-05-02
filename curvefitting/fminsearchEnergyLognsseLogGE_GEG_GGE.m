@@ -1,8 +1,6 @@
 clear;clc;close all;
 global formula data
 load('C:\Users\andy8\Desktop\HYY_DAT2\EUV_mask_Te_100w_Dv500_500_200_PSF.mat');
-%formula = '(1/(pi*(1+x(3))))*((1/(x(1)^2))*exp(-(X/x(1)).^2)+(x(3)/(x(2)^2))*exp(-(X/x(2))));';
-%formula = '(1/(pi*(1+x(4)+x(5))))*((1/(x(1)^2))*exp(-(X/x(1)).^2)+(x(4)/(x(2)^2))*exp(-(X/x(2)))+(x(5)/(x(3)^2))*exp(-(X/x(3)).^2));';
 formula = '(1/(pi*(1+x(3))))*((1/(x(1)^2))*exp(-(X/x(1)).^2)+(x(3)/(x(2)^2))*exp(-(X/x(2)).^2));';
 
 title_name = 'Te';
@@ -15,9 +13,6 @@ y = y_w_norm_tzo;
 
 clear sum
 %% Initial data
-% init_theta_energy=[6.3525 114.155 1.9265];
-% init_theta_lognsse=[19.5978 125.8821 0.9342];
-% init_theta_log=[39.8410  135.4596    0.7793];
 
 init_theta_energy=[6.3525 50 200 1 1.9265];
 init_theta_lognsse=[5 50 200.8821 0.9342 1];
@@ -45,27 +40,27 @@ save_error = [fval_energy_fmin;fval_lognsse_fmin;fval_log_fmin]
 
 %% plot figure
 fs=20;
-% energy
-fig1 = figure;loglog(x_w_norm_tzo,y_w_norm_tzo, 'k-', x_w_norm_tzo, estimated_y_energy_fmin(:,:));hold on;
-xlim([1 500]);title('energy');
-legend('MC data','fminsearch energy');
-set(gca,'FontName','Times New Roman','FontSize',fs)
-xlabel('Radius (nm)','fontsize',fs,'FontName','Times New Roman');
-ylabel('Norm. absorbed energy distribution (1/nm  ^2/e)','fontsize',fs,'FontName','Times New Roman');
-% lognsse
-fig2 = figure;loglog(x_w_norm_tzo,y_w_norm_tzo, 'k-', x_w_norm_tzo, estimated_y_lognsse_fmin(:,:));hold on;
-xlim([1 500]);title('Lognsse');
-legend('MC data','fminsearch lognsse');
-set(gca,'FontName','Times New Roman','FontSize',fs)
-xlabel('Radius (nm)','fontsize',fs,'FontName','Times New Roman');
-ylabel('Norm. absorbed energy distribution (1/nm  ^2/e)','fontsize',fs,'FontName','Times New Roman');
-% log
-fig3 = figure;loglog(x_w_norm_tzo,y_w_norm_tzo, 'k-', x_w_norm_tzo, estimated_y_log_fmin(:,:));hold on;
-xlim([1 500]);title('Log');
-legend('MC data','fminsearch log');
-set(gca,'FontName','Times New Roman','FontSize',fs)
-xlabel('Radius (nm)','fontsize',fs,'FontName','Times New Roman');
-ylabel('Norm. absorbed energy distribution (1/nm  ^2/e)','fontsize',fs,'FontName','Times New Roman');
+% % energy
+% fig1 = figure;loglog(x_w_norm_tzo,y_w_norm_tzo, 'k-', x_w_norm_tzo, estimated_y_energy_fmin(:,:));hold on;
+% xlim([1 500]);title('energy');
+% legend('MC data','fminsearch energy');
+% set(gca,'FontName','Times New Roman','FontSize',fs)
+% xlabel('Radius (nm)','fontsize',fs,'FontName','Times New Roman');
+% ylabel('Norm. absorbed energy distribution (1/nm  ^2/e)','fontsize',fs,'FontName','Times New Roman');
+% % lognsse
+% fig2 = figure;loglog(x_w_norm_tzo,y_w_norm_tzo, 'k-', x_w_norm_tzo, estimated_y_lognsse_fmin(:,:));hold on;
+% xlim([1 500]);title('Lognsse');
+% legend('MC data','fminsearch lognsse');
+% set(gca,'FontName','Times New Roman','FontSize',fs)
+% xlabel('Radius (nm)','fontsize',fs,'FontName','Times New Roman');
+% ylabel('Norm. absorbed energy distribution (1/nm  ^2/e)','fontsize',fs,'FontName','Times New Roman');
+% % log
+% fig3 = figure;loglog(x_w_norm_tzo,y_w_norm_tzo, 'k-', x_w_norm_tzo, estimated_y_log_fmin(:,:));hold on;
+% xlim([1 500]);title('Log');
+% legend('MC data','fminsearch log');
+% set(gca,'FontName','Times New Roman','FontSize',fs)
+% xlabel('Radius (nm)','fontsize',fs,'FontName','Times New Roman');
+% ylabel('Norm. absorbed energy distribution (1/nm  ^2/e)','fontsize',fs,'FontName','Times New Roman');
 
 % 
 fig4 = figure;loglog(x_w_norm_tzo,y_w_norm_tzo, 'k-', x_w_norm_tzo, estimated_y_energy_fmin(:,:));hold on;
@@ -77,9 +72,6 @@ set(gca,'FontName','Times New Roman','FontSize',fs)
 xlabel('Radius (nm)','fontsize',fs,'FontName','Times New Roman');
 ylabel('Norm. absorbed energy distribution (1/nm  ^2/e)','fontsize',fs,'FontName','Times New Roman');
 
-% saveas(fig1,['C:\Users\andy8\Desktop\saveFig\GGE\' title_formula '_' title_name '_fminsearch_'  '_energyfit'])
-% saveas(fig2,['C:\Users\andy8\Desktop\saveFig\GGE\' title_name '_fminsearch_' title_formula '_lognsse'])
-% saveas(fig3,['C:\Users\andy8\Desktop\saveFig\GGE\' title_name '_fminsearch_' title_formula '_log'])
 saveas(fig4,['C:\Users\andy8\Desktop\PhysicsLab\curvefitting\' title_formula '_' title_name '_' yourName ])
 
 %% Fmin energy
