@@ -19,9 +19,13 @@ formula_GE = {'EE' 'EEE' 'EEG' 'GE' 'GEG' 'GGE' 'EG' 'EGG' 'EGE' 'GG' 'GEE' 'GGG
 
 
 for i =1:length(folderPath_list)
+    psf_name = [path folderPath_list(i).name];
+    martial = erase(erase(psf_name,'C:\physicsTopics\HYY_DAT\EUV_mask_'),'_100w_Dv500_500_200_PSF.mat');
+    writematrix(['----------' martial '-----------'],'dat.dat', "WriteMode" , "append" )
     for j = 1:length(formula_arr)
-        psf_name = [path folderPath_list(i).name];
         [save_min,save_error] = fminsearchEnergyLognsseLog(psf_name,figSavePath,formula_arr{j},formula_GE{j});
+        writematrix(formula_GE{j},'dat.dat', "WriteMode" , "append" )
+        writematrix([save_min save_error],'dat.dat', "WriteMode" , "append" )
     end
 end
 
