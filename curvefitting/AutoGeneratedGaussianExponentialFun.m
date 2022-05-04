@@ -1,7 +1,7 @@
 %% Automatically Generate Point Spread Function
 clc;clear all;
 %% inital data
-GauExpArr = 'GEE'; %Ex GEE or GGG
+GauExpArr = 'GGG'; %Ex GEE or GGG
 ParameterArrayName = 'x';
 ParameterName = 'X';
 %% CODE & output
