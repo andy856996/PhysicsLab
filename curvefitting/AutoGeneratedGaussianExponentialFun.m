@@ -1,7 +1,7 @@
 %% Automatically Generate Point Spread Function
 clc;clear all;
 %% inital data
-GauExpArr = 'GGG'; %Ex GEE or GGG
+GauExpArr = 'EEE'; %Ex GEE or GGG
 ParameterArrayName = 'x';
 ParameterName = 'X';
 %% CODE & output
@@ -33,10 +33,10 @@ for i=1:length(GauExpArr)
         end
     elseif GauExpArr(i) == 'E'
         if i==1
-            ABFinalOutPut = [ABFinalOutPut '(1/(' ParameterArrayName '(' num2str(i) ')^2))*exp(-(' ...
+            ABFinalOutPut = [ABFinalOutPut '(1/2*(' ParameterArrayName '(' num2str(i) ')^2))*exp(-(' ...
                 ParameterName '/' ParameterArrayName '(' num2str(i) ')))'];
         else
-            ABFinalOutPut = [ABFinalOutPut '+(' ParameterArrayName '(' num2str(i+length(GauExpArr)-1) ')/(' ...
+            ABFinalOutPut = [ABFinalOutPut '+(' ParameterArrayName '(' num2str(i+length(GauExpArr)-1) ')/2*(' ...
                 ParameterArrayName '(' num2str(i) ')^2))*exp(-(' ParameterName '/' ParameterArrayName '(' num2str(i) ')))' ];
         end
     else

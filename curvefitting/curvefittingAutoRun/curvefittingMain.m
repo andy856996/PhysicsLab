@@ -1,6 +1,6 @@
 clear;clc;close all;
-path = 'C:\physicsTopics\HYY_DAT\';
-figSavePath = 'C:\Users\tating.MSI\Desktop\figureSavePath\';
+path = 'C:\Users\andy8\Desktop\HYY_DAT2\';
+figSavePath = 'C:\Users\andy8\Desktop\saveFigure\';
 folderPath_list = dir(strcat(path,'*.mat'));
 
 formula_arr{1} = '(1/(pi*(1+x(3))))*((1/(x(1)^2))*exp(-(X/x(1)))+(x(3)/(x(2)^2))*exp(-(X/x(2))));';%EE
@@ -20,7 +20,7 @@ formula_GE = {'EE' 'EEE' 'EEG' 'GE' 'GEG' 'GGE' 'EG' 'EGG' 'EGE' 'GG' 'GEE' 'GGG
 
 for i =1:length(folderPath_list)
     psf_name = [path folderPath_list(i).name];
-    martial = erase(erase(psf_name,'C:\physicsTopics\HYY_DAT\EUV_mask_'),'_100w_Dv500_500_200_PSF.mat');
+    martial = erase(erase(psf_name,'C:\Users\andy8\Desktop\HYY_DAT2\EUV_mask_'),'_100w_Dv500_500_200_PSF.mat');
     writematrix(['----------' martial '-----------'],'dat.dat', "WriteMode" , "append" )
     for j = 1:length(formula_arr)
         [save_min,save_error] = fminsearchEnergyLognsseLog(psf_name,figSavePath,formula_arr{j},formula_GE{j});

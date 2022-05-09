@@ -3,7 +3,7 @@ global formula data
 %% -------------------改這裡拉----------------------%%%%%%%%%%%%%%
 load(path); %檔案路徑
 formula = formula_arr;
-martial = erase(erase(path,'C:\physicsTopics\HYY_DAT\EUV_mask_'),'_100w_Dv500_500_200_PSF.mat');
+martial = erase(erase(path,'C:\Users\andy8\Desktop\HYY_DAT2\EUV_mask_'),'_100w_Dv500_500_200_PSF.mat');
 
 title_name = martial;% 要改材料名稱
 title_formula = formula_GE;% 要改
