@@ -3,15 +3,15 @@ global formula data
 %% ------------------- 改這裡拉 ---------------------- %%%%%%%%%%%%%%
 load('C:\Users\andy8\Desktop\HYY_DAT2\EUV_mask_Cr_100w_Dv500_500_200_PSF.mat'); %檔案路徑
 formula = ...
-    '(1/(pi*(1+x(4)+x(5))))*((1/(x(1)^2))*exp(-(X/x(1)).^2)+(x(4)/2*(x(2)^2))*exp(-(X/x(2)))+(x(5)/(x(3)^2))*exp(-(X/x(3)).^2));';%公式
+    '(1/(pi*(1+x(4)+x(5))))*((1/(x(1)^2))*exp(-(X/x(1)).^2)+(x(4)/(2*(x(2)^2)))*exp(-(X/x(2)))+(x(5)/(x(3)^2))*exp(-(X/x(3)).^2));';%公式
 
 title_name = 'Cr';% 要改材料名稱
-title_formula = 'GGE';% 要改
+title_formula = 'GEG';% 要改
 yourName = 'Ding'; % 你的名子
 
-init_theta_energy= [5 50 300 0 0];
-init_theta_lognsse=[1 15 200 0 0];
-init_theta_log    =[1 15 200 0 0];
+init_theta_energy= [5 50 300 1 1];
+init_theta_lognsse=[1 15 200 1 1];
+init_theta_log    =[1 15 200 1 1];
 
 % init_theta_energy= [5 100 0];
 % init_theta_lognsse=[10 300 0];
@@ -38,7 +38,10 @@ eval(['estimated_y_lognsse_fmin(:,:) = ' formula]);
 x = x_log_fmin;
 eval(['estimated_y_log_fmin(:,:) = ' formula]);
 
-save_min = [x_energy_fmin;x_lognsse_fmin;x_log_fmin];
+save_min = [x_energy_fmin(1) x_energy_fmin(3) x_energy_fmin(2) x_energy_fmin(5) x_energy_fmin(4);...
+            x_lognsse_fmin(1) x_lognsse_fmin(3) x_lognsse_fmin(2) x_lognsse_fmin(5) x_lognsse_fmin(4);...
+            x_log_fmin(1) x_log_fmin(3) x_log_fmin(2) x_log_fmin(5) x_log_fmin(4);...
+           ]
 save_error = [fval_energy_fmin;fval_lognsse_fmin;fval_log_fmin];
 save_min = [ save_min save_error];
 %% plot figure
