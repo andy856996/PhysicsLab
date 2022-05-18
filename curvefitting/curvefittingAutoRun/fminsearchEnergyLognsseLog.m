@@ -12,12 +12,12 @@ yourName = 'Ding'; % 你的名子
 
 if length(title_formula) == 2
     init_theta_energy=[1 100 1];
-    init_theta_lognsse=[5 100.1 1];
-    init_theta_log=[5.8410 100 1];
+    init_theta_lognsse=[5 100 1];
+    init_theta_log=[5 100 1];
 else
-    init_theta_energy=[1 50 200 1 1.9265];
-    init_theta_lognsse=[5 50 200.8821 0.9342 1];
-    init_theta_log=[5.8410  50.4596 200 1  0.7793];
+    init_theta_energy= [5 50 200 1 1];
+    init_theta_lognsse=[5 50 200 1 1];
+    init_theta_log=    [5 50 200 1 1];
 end
 
 

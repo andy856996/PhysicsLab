@@ -1,7 +1,6 @@
-%% Automatically Generate Point Spread Function
-clc;clear all;
+function ABFinalOutPut = AutoGeneratePointSpreadFunction(GauExpArr)
 %% inital data
-GauExpArr = 'EE'; %Ex GEE or GGG
+%GauExpArr = 'EE'; %Ex GEE or GGG
 ParameterArrayName = 'x';
 ParameterName = 'X';
 %% CODE & output
@@ -44,4 +43,4 @@ for i=1:length(GauExpArr)
     end
 end
 ABFinalOutPut = [ABFinalOutPut ');'];
-disp(ABFinalOutPut);
+end
