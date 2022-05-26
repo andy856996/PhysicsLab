@@ -3,7 +3,7 @@ global formula data
 %% -------------------改這裡拉----------------------%%%%%%%%%%%%%%
 load(path); %檔案路徑
 formula = formula_arr;
-martial = erase(erase(path,'C:\Users\andy8\Desktop\HYY_DAT2\EUV_mask_'),'_100w_Dv500_500_200_PSF.mat');
+martial = erase(erase(path,'C:\Users\tating\Desktop\NEWE_DAT\EUV_mask_'),'_100w_Dv500_500_200_PSF.mat');
 
 title_name = martial;% 要改材料名稱
 title_formula = formula_GE;% 要改
@@ -18,7 +18,7 @@ clear sum
 %% using GA
  options = optimoptions( ...
      'ga', ...                                    % 最佳化算法
-     'PopulationSize', 10000, ...                    % 染色體數量
+     'PopulationSize', 5000, ...                    % 染色體數量
      'MaxGenerations', 100000, ...                   % 最大繁衍代數 
      'PlotFcn', {@gaplotbestf}, ...     % 繪圖函數%'PlotFcn', {@gaplotbestf}, ... 
      'CrossoverFraction', 0.99, ...                % 交配率
@@ -111,5 +111,5 @@ set(gca,'FontName','Times New Roman','FontSize',fs)
 xlabel('Radius (nm)','fontsize',fs,'FontName','Times New Roman');
 ylabel('Norm. absorbed energy distribution (1/nm  ^2/e)','fontsize',fs,'FontName','Times New Roman');
 %% 這裡也要改 圖片存檔路徑
-saveas(fig4,[figsavePATH title_formula '_' title_name '_' yourName ]);
+savefig(fig4,[figsavePATH title_formula '_' title_name '_' yourName ]);
 end
