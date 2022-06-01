@@ -97,5 +97,6 @@ x_w_norm=x; y_w_norm=y_test;% (x,y) of PSF with normalization
 % % % % % ylabel('Wo Norm. absorbed energy distribution (1/nm  ^2/e)','fontsize',fs,'FontName','Times New Roman');
 
 %% Save file
-save (savepath);
+save (savepath,'x_w_norm_tzo','y_w_norm_tzo','x_wo_norm_tzo','y_wo_norm_tzo','points_of_y_axis','points_of_x_axis',...
+    'xy_plane_intensity','Normorlize_xy_plane_intensity');
 end

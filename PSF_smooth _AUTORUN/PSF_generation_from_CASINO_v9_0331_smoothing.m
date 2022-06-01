@@ -7,15 +7,15 @@ clear all;clc;close all
 
 %% parameters setting (The mark " %% " is what you can adjust to satisfy the conditions you desired. )
 %folderPath = 'D:\andy856996_FTP\PSF\SB_PSF_100w\DAT2\';
-folderPath = 'C:\Users\tating\Desktop\DAT\';
+folderPath = 'C:\Users\tating.MSI\Desktop\DAT\';
 %savePath_dir ='D:\andy856996_FTP\PSF\SB_PSF_100w\save_mat_new\';
-savePath_dir ='C:\Users\tating\Desktop\DAT\';
+savePath_dir ='C:\Users\tating.MSI\Desktop\DAT\';
 depthOfPMMA = 80;%nm
 num_of_y_axis_points=500;%% y divition number of *.dat file
 a = 0; %% Starting calculation layer
-for i=1:1:6
+folderPath_list = dir(strcat(folderPath,'*.dat'));
+for i=1:1:length(folderPath_list)
     NumOfDat = i; %whitch dat you select
-    folderPath_list = dir(strcat(folderPath,'*.dat'));
     data_path=[folderPath folderPath_list(NumOfDat).name];
     savepath = [savePath_dir erase(folderPath_list(NumOfDat).name,"dat") 'mat'];
     num_of_XY_planes = returnNum_of_XY_planes(data_path,depthOfPMMA);%% Stopping calculation of "XY plane" layer
