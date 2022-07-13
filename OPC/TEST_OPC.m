@@ -171,7 +171,7 @@ smo_PSM_mask(80,pz_smo2,21,15,0.29,1.25,193,1,0.4); %The result is shown in the 
 
 %% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%Chapter 10%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% check_OPC(Check whether the topology of the binary mask pattern satisﬁes the topo-logical constraint.)
-check%OPC(m dummy,90,8,3); %This example is used in Section 10.4.3.
+check_OPC(m_dummy,90,8,3); %This example is used in Section 10.4.3.
 %The algorithms are described in Section 10.4.1.
 %% check_PSM(Check whether the topology of the phase-shifting mask pattern satisﬁes the topological constraint.)
 check_PSM(m_dummy,80,9,1,2);% This example is used in Section 10.5.3.
